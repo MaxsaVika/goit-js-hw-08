@@ -15,16 +15,21 @@ onCheckForm();
 function onFormSubmit(event) {
   event.preventDefault();
 
-  formData.email = input.value;
-  formData.message = textarea.value;
-  console.log(formData);
-
-  event.currentTarget.reset();
-  localStorage.removeItem(LOCALSTORAGE_KEY);
+  if (input.value === '' || textarea.value === '') {
+    alert('Всі поля мають бути заповнені!');
+  } else {
+    formData.email = input.value;
+    formData.message = textarea.value;
+    console.log(formData);
+    event.currentTarget.reset();
+    localStorage.removeItem(LOCALSTORAGE_KEY);
+  }
 }
 
-function onFormInput(event) {
-  formData[event.target.name] = event.target.value;
+function onFormInput() {
+  formData.email = input.value;
+  formData.message = textarea.value;
+
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
 }
 

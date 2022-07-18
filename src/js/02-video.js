@@ -17,5 +17,3 @@ const timeUpdate = function ({ seconds }) {
 };
 
 player.on('timeupdate', throttle(timeUpdate, 1000));
-
-// player.setCurrentTime(timeFromStorage).then(function () {});
