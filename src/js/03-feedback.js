@@ -12,14 +12,20 @@ form.addEventListener('input', throttle(onFormInput, 500));
 
 onCheckForm();
 
+function onTakeInputValue() {
+  formData.email = input.value;
+  formData.message = textarea.value;
+}
+
 function onFormSubmit(event) {
   event.preventDefault();
 
   if (input.value === '' || textarea.value === '') {
     alert('Всі поля мають бути заповнені!');
   } else {
-    formData.email = input.value;
-    formData.message = textarea.value;
+    onTakeInputValue();
+    // formData.email = input.value;
+    // formData.message = textarea.value;
     console.log(formData);
     event.currentTarget.reset();
     localStorage.removeItem(LOCALSTORAGE_KEY);
@@ -27,8 +33,9 @@ function onFormSubmit(event) {
 }
 
 function onFormInput() {
-  formData.email = input.value;
-  formData.message = textarea.value;
+  onTakeInputValue();
+  // formData.email = input.value;
+  // formData.message = textarea.value;
 
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
 }
